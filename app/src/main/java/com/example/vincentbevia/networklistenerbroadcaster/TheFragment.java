@@ -51,16 +51,16 @@ public class TheFragment extends Fragment {
     private final BroadcastReceiver networkMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getStringExtra("network_status").equals("CONNECTED TO WIFI")
-                    || intent.getStringExtra("network_status").equals("CONNECTED TO MOBILE")) {
+            if (intent.getStringExtra(getString(R.string.network_status)).equals("CONNECTED TO WIFI")
+                    || intent.getStringExtra(getString(R.string.network_status)).equals("CONNECTED TO MOBILE")) {
 
                 //Toast.makeText(context, "Already set", Toast.LENGTH_SHORT).show();
-                NetworkStatus.setText(intent.getStringExtra("network_status"));
+                NetworkStatus.setText(intent.getStringExtra(getString(R.string.network_status)));
 
             } else {
 
                 //Refresh web or view here!
-                NetworkStatus.setText(intent.getStringExtra("network_status"));
+                NetworkStatus.setText(intent.getStringExtra(getString(R.string.network_status)));
             }
         }
     };
@@ -73,7 +73,8 @@ public class TheFragment extends Fragment {
                         ConnectivityManager.CONNECTIVITY_ACTION));
 
         LocalBroadcastManager.getInstance(getActivity()).
-                registerReceiver(networkMessageReceiver, new IntentFilter("get-network-status"));
+                registerReceiver(networkMessageReceiver,
+                        new IntentFilter(getString(R.string.get_network_status)));
     }
 
     private void unRegisterNetworkChangeReceiver() {

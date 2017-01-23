@@ -37,8 +37,8 @@ class NetworkChangeReceiver extends BroadcastReceiver {
 
     private void callObservers(Context context, Intent intent) {
         this.intent = intent;
-        this.intent = new Intent("get-network-status");
-        this.intent.putExtra("network_status", TAG_NETWORK_STATUS);
+        this.intent = new Intent(context.getString(R.string.get_network_status));  //get-network-status
+        this.intent.putExtra(context.getString(R.string.network_status), TAG_NETWORK_STATUS); //network_status
         LocalBroadcastManager.getInstance(context).sendBroadcast(this.intent);
     }
 }
